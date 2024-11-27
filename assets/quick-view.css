@@ -1,0 +1,60 @@
+/* Quick View Modal */
+.quick-view-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: none;
+}
+
+.quick-view-modal.is-active {
+  display: block;
+}
+
+.quick-view-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.quick-view-modal__content {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 90vh;
+  margin: 5vh auto;
+  background: var(--color-background);
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+.quick-view-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 10;
+}
+
+.quick-view-product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 40px;
+}
+
+@media (max-width: 768px) {
+  .quick-view-product {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+}

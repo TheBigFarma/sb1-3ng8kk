@@ -1,0 +1,82 @@
+<div class="cart-drawer" data-cart-drawer>
+  <div class="cart-drawer__header">
+    <h2>Shopping Cart</h2>
+    <button class="cart-drawer__close" data-cart-drawer-close>
+      {% render 'icon-close' %}
+    </button>
+  </div>
+
+  <div class="cart-drawer__content">
+    {% if cart.item_count > 0 %}
+      <form action="/cart" method="post" novalidate>
+        <div class="cart-drawer__items">
+          {% for item in cart.items %}
+            <div class="cart-drawer__item" data-cart-item="{{ item.key }}">
+              <div class="cart-drawer__item-image">
+                <img src="{{ item | img_url: '120x' }}" alt="{{ item.title | escape }}">
+              </div>
+              
+              <div class="cart-drawer__item-content">
+                <h3>{{ item.product.title }}</h3>
+                <p>{{ item.variant.title }}</p>
+                
+                <div class="cart-drawer__item-quantity">
+                  <button 
+                    type="button" 
+                    data-quantity-minus
+                    data-item-key="{{ item.key }}"
+                  >-</button>
+                  <input 
+                    type="number" 
+                    name="updates[]" 
+                    value="{{ item.quantity }}" 
+                    min="0"
+                    data-quantity-input
+                  >
+                  <button 
+                    type="button"
+                    data-quantity-plus
+                    data-item-key="{{ item.key }}"
+                  >+</button>
+                </div>
+                
+                <button 
+                  type="button"
+                  class="cart-drawer__item-remove"
+                  data-item-remove
+                  data-item-key="{{ item.key }}"
+                >
+                  Remove
+                </button>
+              </div>
+              
+              <div class="cart-drawer__item-price">
+                {{ item.final_line_price | money }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="cart-drawer__footer">
+          <div class="cart-drawer__subtotal">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          
+          <button 
+            type="submit" 
+            name="checkout"
+            class="cart-drawer__checkout"
+          >
+            Checkout
+          </button>
+        </div>
+      </form>
+    {% else %}
+      <div class="cart-drawer__empty">
+        <p>Your cart is empty</p>
+        <a href="/collections/all" class="button">Continue Shopping</a>
+      </div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,10 @@
+development:
+  password: ${SHOPIFY_PASSWORD}
+  theme_id: ${SHOPIFY_THEME_ID}
+  store: ${SHOPIFY_STORE_URL}
+  ignore_files:
+    - "*.test.js"
+    - "*.test.jsx"
+    - "*.md"
+    - ".git/*"
+    - "node_modules/*"

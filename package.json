@@ -1,0 +1,29 @@
+{
+  "name": "bigfarma-shopify-theme",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "shopify theme dev --store=your-store.myshopify.com",
+    "build": "shopify theme build",
+    "deploy": "shopify theme push",
+    "check": "theme-check",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@shopify/theme-sections": "^4.1.1",
+    "@shopify/theme-cart": "^4.1.1",
+    "@shopify/theme-product": "^4.1.1",
+    "@shopify/theme-product-form": "^4.1.1",
+    "@shopify/theme-addresses": "^4.1.1",
+    "@shopify/theme-currency": "^4.1.1",
+    "@shopify/cli": "^3.48.0",
+    "lazysizes": "^5.3.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3",
+    "postcss": "^8.4.27",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^9.1.1",
+    "jest": "^29.6.2"
+  }
+}

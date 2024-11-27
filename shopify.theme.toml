@@ -1,0 +1,11 @@
+[environments.development]
+store = "your-store.myshopify.com"
+password = "shptka_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+theme_id = "xxxxxxxxxxxxx"
+ignore_files = ["*.test.js", "*.test.jsx", "*.md", ".git/*", "node_modules/*"]
+
+[environments.production]
+store = "your-store.myshopify.com"
+password = "shptka_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+theme_id = "xxxxxxxxxxxxx"
+ignore_files = ["*.test.js", "*.test.jsx", "*.md", ".git/*", "node_modules/*"]

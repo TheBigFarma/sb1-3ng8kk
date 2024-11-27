@@ -1,0 +1,57 @@
+{% if section.settings.show_announcement %}
+  <div class="announcement-bar" data-announcement-bar>
+    <div class="announcement-bar__content">
+      {% if section.settings.announcement_link != blank %}
+        <a href="{{ section.settings.announcement_link }}">
+      {% endif %}
+      
+      {{ section.settings.announcement_text }}
+      
+      {% if section.settings.announcement_link != blank %}
+        </a>
+      {% endif %}
+    </div>
+    
+    {% if section.settings.enable_close %}
+      <button class="announcement-bar__close" data-announcement-close>
+        {% render 'icon-close' %}
+      </button>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Announce something here"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_close",
+      "label": "Enable close button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

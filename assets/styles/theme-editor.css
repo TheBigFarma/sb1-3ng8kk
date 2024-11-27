@@ -1,0 +1,82 @@
+/* Theme editor specific styles */
+.is-selected {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+  position: relative;
+}
+
+.is-selected::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 112, 243, 0.1);
+  pointer-events: none;
+}
+
+/* Section controls positioning */
+.shopify-section {
+  position: relative;
+}
+
+.shopify-section-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+
+/* Block controls positioning */
+[data-shopify-editor-block] {
+  position: relative;
+}
+
+.shopify-block-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+
+/* Theme settings panel styles */
+.theme-settings-spacing {
+  margin-bottom: 20px;
+}
+
+.theme-settings-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.theme-settings-description {
+  font-size: 0.9em;
+  color: var(--color-secondary);
+  margin-bottom: 12px;
+}
+
+/* Color picker styles */
+.theme-settings-color-picker {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Range slider styles */
+.theme-settings-range {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* Select styles */
+.theme-settings-select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: white;
+}

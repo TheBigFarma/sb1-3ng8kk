@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="{{ settings.accent_color }}">
+
+    <title>{{ page_title | escape }}</title>
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
+    <script src="{{ 'product-card.js' | asset_url }}" defer></script>
+    <script src="{{ 'quick-view.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    {% section 'header' %}
+
+    <main role="main" id="MainContent">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    {% render 'cart-drawer' %}
+    {% render 'quick-view-modal' %}
+  </body>
+</html>

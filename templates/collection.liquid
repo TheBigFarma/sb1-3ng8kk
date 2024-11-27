@@ -1,0 +1,30 @@
+<div class="collection-template">
+  {% render 'breadcrumbs' %}
+
+  <div class="collection-template__header">
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="collection-template__description">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="collection-template__container">
+    <div class="collection-template__sidebar">
+      {% render 'product-filters', collection: collection %}
+    </div>
+
+    <div class="collection-template__products" data-product-grid>
+      {% paginate collection.products by 24 %}
+        <div class="collection-template__grid">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        </div>
+
+        {% render 'pagination', paginate: paginate %}
+      {% endpaginate %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="header {% if settings.sticky_header %}header--sticky{% endif %}" 
+     style="height: {{ settings.header_height }}px"
+     data-header>
+  <div class="header__content">
+    <div class="header__logo">
+      {% if template == 'index' %}
+        <h1>
+          <a href="/">{{ shop.name }}</a>
+        </h1>
+      {% else %}
+        <div class="h1">
+          <a href="/">{{ shop.name }}</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <nav class="header__nav">
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}" class="header__nav-link">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="header__icons">
+      <a href="/search" class="header__icon">
+        {% render 'icon-search' %}
+      </a>
+      <a href="/account" class="header__icon">
+        {% render 'icon-account' %}
+      </a>
+      <a href="/cart" class="header__icon">
+        {% render 'icon-cart' %}
+        <span class="header__cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</div>

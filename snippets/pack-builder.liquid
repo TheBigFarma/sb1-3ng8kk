@@ -1,0 +1,62 @@
+<div class="pack-builder" data-pack-builder>
+  <div class="pack-builder__header">
+    <h2 class="pack-builder__title">Build Your Custom Pack</h2>
+    <p class="pack-builder__subtitle">Select products to create your personalized bundle</p>
+  </div>
+
+  <div class="pack-builder__content">
+    <div class="pack-builder__products">
+      {% for product in collections.all.products %}
+        {% if product.tags contains 'pack-eligible' %}
+          <div class="pack-builder__product" data-product-id="{{ product.id }}">
+            <div class="pack-builder__product-image">
+              <img src="{{ product.featured_image | img_url: '200x' }}" alt="{{ product.title }}">
+            </div>
+            <div class="pack-builder__product-info">
+              <h3>{{ product.title }}</h3>
+              <p class="pack-builder__product-price">{{ product.price | money }}</p>
+              <select class="pack-builder__variant-select" data-variant-select>
+                {% for variant in product.variants %}
+                  <option value="{{ variant.id }}" data-price="{{ variant.price }}">
+                    {{ variant.title }}
+                  </option>
+                {% endfor %}
+              </select>
+              <div class="pack-builder__quantity">
+                <button type="button" data-quantity-minus>-</button>
+                <input type="number" value="0" min="0" max="10" data-quantity-input>
+                <button type="button" data-quantity-plus>+</button>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="pack-builder__summary">
+      <h3>Pack Summary</h3>
+      <div class="pack-builder__selected-items" data-selected-items></div>
+      <div class="pack-builder__totals">
+        <div class="pack-builder__subtotal">
+          <span>Subtotal:</span>
+          <span data-subtotal>$0.00</span>
+        </div>
+        <div class="pack-builder__discount">
+          <span>Pack Discount:</span>
+          <span data-discount>-$0.00</span>
+        </div>
+        <div class="pack-builder__total">
+          <span>Total:</span>
+          <span data-total>$0.00</span>
+        </div>
+      </div>
+      <button 
+        class="pack-builder__add-to-cart"
+        data-add-pack-to-cart
+        disabled
+      >
+        Add Pack to Cart
+      </button>
+    </div>
+  </div>
+</div>

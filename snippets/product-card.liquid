@@ -1,0 +1,82 @@
+<div class="product-card" data-product-card>
+  <div class="product-card__image">
+    <a href="{{ product.url }}">
+      <img 
+        src="{{ product.featured_image | img_url: '400x' }}" 
+        alt="{{ product.featured_image.alt | escape }}"
+        loading="lazy"
+        width="400"
+        height="400"
+      >
+      {% if product.images.size > 1 %}
+        <img 
+          class="product-card__hover-image"
+          src="{{ product.images[1] | img_url: '400x' }}"
+          alt="{{ product.images[1].alt | escape }}"
+          loading="lazy"
+          width="400"
+          height="400"
+        >
+      {% endif %}
+    </a>
+    <button 
+      class="product-card__quick-view"
+      data-quick-view-trigger
+      data-product-handle="{{ product.handle }}"
+    >
+      Quick View
+    </button>
+  </div>
+
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    
+    <div class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="product-card__price--sale">
+          {{ product.price | money }}
+        </span>
+        <span class="product-card__price--compare">
+          {{ product.compare_at_price | money }}
+        </span>
+      {% else %}
+        <span class="product-card__price--regular">
+          {{ product.price | money }}
+        </span>
+      {% endif %}
+    </div>
+
+    <div class="product-card__variant-selector">
+      <select 
+        name="id" 
+        data-product-select 
+        data-product-handle="{{ product.handle }}"
+      >
+        {% for variant in product.variants %}
+          <option 
+            value="{{ variant.id }}"
+            {% if variant == product.selected_or_first_available_variant %}
+              selected="selected"
+            {% endif %}
+          >
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button 
+      class="product-card__add-to-cart"
+      data-add-to-cart
+      data-product-handle="{{ product.handle }}"
+    >
+      {% if product.available %}
+        Add to Cart
+      {% else %}
+        Sold Out
+      {% endif %}
+    </button>
+  </div>
+</div>

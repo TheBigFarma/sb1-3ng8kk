@@ -1,0 +1,161 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+}
+
+.hero__content {
+  position: relative;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+  z-index: 2;
+}
+
+.hero__promo-code {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  animation: fadeInUp 1s ease;
+}
+
+.hero__promo-label {
+  margin-right: 10px;
+  opacity: 0.8;
+}
+
+.hero__promo-code-text {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.hero__title {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: fadeInUp 1s ease 0.2s both;
+}
+
+.hero__subtitle {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  animation: fadeInUp 1s ease 0.4s both;
+}
+
+.hero__cta {
+  display: inline-block;
+  background: var(--color-accent);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: fadeInUp 1s ease 0.6s both;
+}
+
+.hero__cta:hover {
+  transform: translateY(-3px);
+  background-color: #0056b3;
+}
+
+.hero__floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero__floating-element {
+  position: absolute;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero__floating-element--1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.hero__floating-element--2 {
+  top: 40%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.hero__floating-element--3 {
+  bottom: 25%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 500px;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero__floating-elements {
+    display: none;
+  }
+}

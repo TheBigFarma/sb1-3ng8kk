@@ -1,0 +1,92 @@
+<div class="blog-template">
+  <header class="blog-template__header">
+    <h1>{{ blog.title }}</h1>
+    
+    {% if blog.description != blank %}
+      <div class="blog-template__description">
+        {{ blog.description }}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="blog-template__grid">
+    {% paginate blog.articles by 12 %}
+      {% for article in blog.articles %}
+        <article class="blog-template__article">
+          {% if article.image %}
+            <a href="{{ article.url }}" class="blog-template__image">
+              <img 
+                src="{{ article.image | img_url: '400x' }}"
+                alt="{{ article.image.alt | escape }}"
+                loading="lazy"
+                width="400"
+                height="300"
+                class="lazyload"
+              >
+            </a>
+          {% endif %}
+          
+          <div class="blog-template__content">
+            <h2>
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h2>
+            
+            <div class="blog-template__meta">
+              {{ article.published_at | date: "%B %d, %Y" }}
+              {% if article.tags.size > 0 %}
+                <span class="blog-template__tags">
+                  {% for tag in article.tags %}
+                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+                  {% endfor %}
+                </span>
+              {% endif %}
+            </div>
+            
+            <div class="blog-template__excerpt">
+              {{ article.excerpt_or_content | strip_html | truncatewords: 30 }}
+            </div>
+            
+            <a href="{{ article.url }}" class="blog-template__read-more">
+              Read more
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+      
+      {% render 'pagination', paginate: paginate %}
+    {% endpaginate %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Template",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "list",
+          "label": "List"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "posts_per_page",
+      "label": "Posts per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

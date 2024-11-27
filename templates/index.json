@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "background_image": "",
+        "promo_label": "Special Offer",
+        "promo_code": "BIGFARMA20",
+        "title": "Premium CBD Products",
+        "subtitle": "Discover our range of high-quality CBD products",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all",
+        "show_floating_elements": true
+      }
+    },
+    "featured_products": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "featured",
+        "products_to_show": 4,
+        "show_view_all": true
+      }
+    },
+    "stats": {
+      "type": "stats",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "icon": "satisfaction",
+            "number": "98%",
+            "label": "Satisfied Customers"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "icon": "lab",
+            "number": "100%",
+            "label": "Lab Tested Products"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "icon": "support",
+            "number": "24/7",
+            "label": "Customer Support"
+          }
+        }
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured_products",
+    "stats"
+  ]
+}

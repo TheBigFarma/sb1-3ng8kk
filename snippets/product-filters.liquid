@@ -1,0 +1,83 @@
+{% assign current_tags = current_tags | default: empty %}
+
+<div class="product-filters" data-product-filters>
+  <div class="product-filters__group">
+    <h3 class="product-filters__title">Categories</h3>
+    <div class="product-filters__options">
+      {% for tag in collection.all_tags %}
+        {% if tag contains 'category:' %}
+          {% assign category = tag | split: ':' | last %}
+          <label class="product-filters__option">
+            <input 
+              type="checkbox" 
+              name="filter[]" 
+              value="{{ tag | handle }}"
+              {% if current_tags contains tag %}checked{% endif %}
+              data-filter-checkbox
+            >
+            {{ category }}
+          </label>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="product-filters__group">
+    <h3 class="product-filters__title">Price Range</h3>
+    <div class="product-filters__price-range">
+      <input 
+        type="range" 
+        min="0" 
+        max="{{ collection.price_max }}" 
+        step="100"
+        value="{{ collection.price_min }}"
+        data-price-slider
+      >
+      <div class="product-filters__price-inputs">
+        <input 
+          type="number" 
+          min="0" 
+          max="{{ collection.price_max }}"
+          value="{{ collection.price_min }}"
+          data-price-min
+        >
+        <span>to</span>
+        <input 
+          type="number" 
+          min="0" 
+          max="{{ collection.price_max }}"
+          value="{{ collection.price_max }}"
+          data-price-max
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="product-filters__group">
+    <h3 class="product-filters__title">Sort By</h3>
+    <select class="product-filters__sort" data-sort-select>
+      <option value="manual">Featured</option>
+      <option value="price-ascending">Price: Low to High</option>
+      <option value="price-descending">Price: High to Low</option>
+      <option value="title-ascending">Alphabetically: A-Z</option>
+      <option value="title-descending">Alphabetically: Z-A</option>
+      <option value="created-ascending">Date: Old to New</option>
+      <option value="created-descending">Date: New to Old</option>
+    </select>
+  </div>
+
+  <div class="product-filters__actions">
+    <button 
+      class="product-filters__clear"
+      data-clear-filters
+    >
+      Clear All
+    </button>
+    <button 
+      class="product-filters__apply"
+      data-apply-filters
+    >
+      Apply Filters
+    </button>
+  </div>
+</div>

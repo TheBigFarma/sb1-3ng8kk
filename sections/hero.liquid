@@ -1,0 +1,103 @@
+{% assign hero_image = section.settings.background_image %}
+
+<div class="hero" data-hero>
+  <div class="hero__background">
+    {% if hero_image %}
+      <img 
+        src="{{ hero_image | img_url: '2000x' }}"
+        alt="{{ hero_image.alt | escape }}"
+        loading="eager"
+        class="hero__background-image"
+      >
+    {% endif %}
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__promo-code">
+      <span class="hero__promo-label">{{ section.settings.promo_label }}</span>
+      <span class="hero__promo-code-text">{{ section.settings.promo_code }}</span>
+    </div>
+
+    <h1 class="hero__title">{{ section.settings.title }}</h1>
+    <p class="hero__subtitle">{{ section.settings.subtitle }}</p>
+
+    <a href="{{ section.settings.button_link }}" class="hero__cta">
+      {{ section.settings.button_text }}
+    </a>
+  </div>
+
+  {% if section.settings.show_floating_elements %}
+    <div class="hero__floating-elements">
+      {% for i in (1..3) %}
+        <div class="hero__floating-element hero__floating-element--{{ i }}">
+          <img 
+            src="{{ 'element-' | append: i | append: '.png' | asset_url }}"
+            alt=""
+            loading="eager"
+          >
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "promo_label",
+      "label": "Promo Label",
+      "default": "Special Offer"
+    },
+    {
+      "type": "text",
+      "id": "promo_code",
+      "label": "Promo Code",
+      "default": "BIGFARMA20"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Premium CBD Products"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Discover our range of high-quality CBD products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_floating_elements",
+      "label": "Show Floating Elements",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}

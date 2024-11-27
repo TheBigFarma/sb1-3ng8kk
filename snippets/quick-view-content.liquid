@@ -1,0 +1,118 @@
+<div class="quick-view-product">
+  <div class="quick-view-product__gallery">
+    <div class="quick-view-product__main-image">
+      <img 
+        src="{{ product.featured_image | img_url: '600x' }}" 
+        alt="{{ product.featured_image.alt | escape }}"
+        data-main-image
+      >
+    </div>
+    
+    {% if product.images.size > 1 %}
+      <div class="quick-view-product__thumbnails">
+        {% for image in product.images %}
+          <button 
+            class="quick-view-product__thumbnail {% if forloop.first %}is-active{% endif %}"
+            data-thumbnail
+            data-image-id="{{ image.id }}"
+          >
+            <img 
+              src="{{ image | img_url: '100x' }}" 
+              alt="{{ image.alt | escape }}"
+              loading="lazy"
+            >
+          </button>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="quick-view-product__info">
+    <h2 class="quick-view-product__title">{{ product.title }}</h2>
+    
+    <div class="quick-view-product__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="quick-view-product__price--sale">
+          {{ product.price | money }}
+        </span>
+        <span class="quick-view-product__price--compare">
+          {{ product.compare_at_price | money }}
+        </span>
+      {% else %}
+        <span class="quick-view-product__price--regular">
+          {{ product.price | money }}
+        </span>
+      {% endif %}
+    </div>
+
+    <div class="quick-view-product__description">
+      {{ product.description | truncatewords: 50 }}
+      <a href="{{ product.url }}" class="quick-view-product__more">Read More</a>
+    </div>
+
+    <form class="quick-view-product__form" data-product-form>
+      {% for option in product.options_with_values %}
+        <div class="quick-view-product__option">
+          <label for="Option{{ option.position }}">
+            {{ option.name }}
+          </label>
+          <select 
+            id="Option{{ option.position }}"
+            name="options[{{ option.name | escape }}]"
+            data-option-select
+          >
+            {% for value in option.values %}
+              <option 
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}selected="selected"{% endif %}
+              >
+                {{ value }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endfor %}
+
+      <select name="id" data-variant-select>
+        {% for variant in product.variants %}
+          <option 
+            value="{{ variant.id }}"
+            {% if variant == product.selected_or_first_available_variant %}
+              selected="selected"
+            {% endif %}
+            {% unless variant.available %}disabled="disabled"{% endunless %}
+            data-price="{{ variant.price | money }}"
+            data-compare-price="{{ variant.compare_at_price | money }}"
+          >
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <div class="quick-view-product__quantity">
+        <label for="Quantity">Quantity</label>
+        <input 
+          type="number" 
+          id="Quantity"
+          name="quantity" 
+          value="1" 
+          min="1" 
+          data-quantity-input
+        >
+      </div>
+
+      <button 
+        type="submit"
+        class="quick-view-product__submit"
+        data-add-to-cart
+        {% unless product.available %}disabled{% endunless %}
+      >
+        {% if product.available %}
+          Add to Cart
+        {% else %}
+          Sold Out
+        {% endif %}
+      </button>
+    </form>
+  </div>
+</div>
