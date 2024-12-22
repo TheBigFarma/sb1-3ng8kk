@@ -1,17 +1,31 @@
-<header class="bg-gray-900 text-gray-300">
-  <div class="container mx-auto px-4 py-6 flex justify-between items-center">
-    <a href="/" class="text-2xl font-bold text-emerald-500">CBD Shop</a>
-    <nav class="flex space-x-4">
-      {% for link in linklists.main-menu.links %}
-        <a href="{{ link.url }}" class="hover:text-emerald-500 transition-colors">{{ link.title }}</a>
-      {% endfor %}
-    </nav>
-    <div class="flex items-center space-x-4">
-      <a href="/cart" class="relative">
-        <svg class="h-6 w-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M3 3h18l-1 9H4L3 3z"></path>
-        </svg>
-      </a>
+<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50 transition-all duration-300">
+  <div class="container mx-auto px-4">
+    <div class="py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="{{ shop.url }}">
+          <img src="{{ 'logo.svg' | asset_url }}" alt="Logo" class="h-12 w-auto">
+        </a>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-gray-700 hover:text-emerald-600">Accueil</a>
+        <a href="/about" class="text-gray-700 hover:text-emerald-600">À propos</a>
+        <a href="/contact" class="text-gray-700 hover:text-emerald-600">Nous contacter</a>
+      </nav>
+
+      <!-- Barre de recherche -->
+      <div class="hidden md:flex flex-1 max-w-xl mx-8">
+        <form method="get" action="/search" class="relative w-full">
+          <input type="text" name="q" placeholder="Rechercher..." class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-emerald-500">
+          <button type="submit" class="absolute left-3 top-1/2 transform -translate-y-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-gray-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </header>
