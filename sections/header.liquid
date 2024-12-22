@@ -1,36 +1,17 @@
-<div class="header {% if settings.sticky_header %}header--sticky{% endif %}" 
-     style="height: {{ settings.header_height }}px"
-     data-header>
-  <div class="header__content">
-    <div class="header__logo">
-      {% if template == 'index' %}
-        <h1>
-          <a href="/">{{ shop.name }}</a>
-        </h1>
-      {% else %}
-        <div class="h1">
-          <a href="/">{{ shop.name }}</a>
-        </div>
-      {% endif %}
-    </div>
-
-    <nav class="header__nav">
+<header class="bg-gray-900 text-gray-300">
+  <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+    <a href="/" class="text-2xl font-bold text-emerald-500">CBD Shop</a>
+    <nav class="flex space-x-4">
       {% for link in linklists.main-menu.links %}
-        <a href="{{ link.url }}" class="header__nav-link">{{ link.title }}</a>
+        <a href="{{ link.url }}" class="hover:text-emerald-500 transition-colors">{{ link.title }}</a>
       {% endfor %}
     </nav>
-
-    <div class="header__icons">
-      <a href="/search" class="header__icon">
-        {% render 'icon-search' %}
-      </a>
-      <a href="/account" class="header__icon">
-        {% render 'icon-account' %}
-      </a>
-      <a href="/cart" class="header__icon">
-        {% render 'icon-cart' %}
-        <span class="header__cart-count">{{ cart.item_count }}</span>
+    <div class="flex items-center space-x-4">
+      <a href="/cart" class="relative">
+        <svg class="h-6 w-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 3h18l-1 9H4L3 3z"></path>
+        </svg>
       </a>
     </div>
   </div>
-</div>
+</header>
