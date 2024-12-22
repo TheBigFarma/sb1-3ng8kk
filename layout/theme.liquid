@@ -1,35 +1,38 @@
 <!DOCTYPE html>
-<html lang="{{ request.locale.iso_code }}">
-  <head>
-    <meta charset="utf-8">
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="{{ settings.accent_color }}">
+    <title>{{ page_title }}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ 'favicon.ico' | asset_url }}">
 
-    <title>{{ page_title | escape }}</title>
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="{{ 'tailwind.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
 
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
-
+    <!-- Scripts -->
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
-    <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
-    <script src="{{ 'product-card.js' | asset_url }}" defer></script>
-    <script src="{{ 'quick-view.js' | asset_url }}" defer></script>
 
+    <!-- Shopify Liquid Metafields -->
     {{ content_for_header }}
-  </head>
+</head>
+<body class="bg-gray-50 text-gray-800">
 
-  <body>
+    <!-- En-tête -->
     {% section 'header' %}
 
-    <main role="main" id="MainContent">
-      {{ content_for_layout }}
+    <!-- Contenu principal -->
+    <main role="main" class="min-h-screen">
+        {{ content_for_layout }}
     </main>
 
+    <!-- Pied de page -->
     {% section 'footer' %}
 
-    {% render 'cart-drawer' %}
-    {% render 'quick-view-modal' %}
-  </body>
+    <!-- Shopify Liquid Scripts -->
+    {{ content_for_footer }}
+</body>
 </html>
