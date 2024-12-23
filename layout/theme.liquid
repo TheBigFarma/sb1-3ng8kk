@@ -3,36 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title }}</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="{{ 'favicon.ico' | asset_url }}">
+    <title>{{ page_title }} | {{ shop.name }}</title>
+    <link rel="icon" href="{{ 'vite.svg' | asset_url }}" type="image/svg+xml">
 
-    <!-- Styles CSS -->
+    <!-- Styles -->
     <link rel="stylesheet" href="{{ 'tailwind.css' | asset_url }}">
-    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
-
-    <!-- Scripts -->
-    <script src="{{ 'custom.js' | asset_url }}" defer></script>
-    <script src="{{ 'theme.js' | asset_url }}" defer></script>
-
-    <!-- Shopify Liquid Metafields -->
     {{ content_for_header }}
 </head>
-<body class="bg-gray-50 text-gray-800">
-
+<body class="min-h-screen bg-gray-50">
     <!-- En-tête -->
     {% section 'header' %}
 
+    <!-- Bannière -->
+    {% section 'banner' %}
+
     <!-- Contenu principal -->
-    <main role="main" class="min-h-screen">
+    <main role="main" class="container mx-auto px-4">
         {{ content_for_layout }}
     </main>
 
     <!-- Pied de page -->
     {% section 'footer' %}
 
-    <!-- Shopify Liquid Scripts -->
     {{ content_for_footer }}
 </body>
 </html>
