@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="stylesheet" href="{{ 'index-DxdBfIqj.css' | asset_url }}">
-    <script src="{{ 'index-DVkctk2V.js' | asset_url }}" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page_title }} | {{ shop.name }}</title>
-    <link rel="icon" href="{{ 'vite.svg' | asset_url }}" type="image/svg+xml">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="{{ 'index-DxdBfIqj.css' | asset_url }}">
+    <script src="{{ 'index-DVkctk2V.js' | asset_url }}" defer></script>
     {{ content_for_header }}
 </head>
-<body class="min-h-screen bg-gray-50">
+<body class="bg-gray-50">
     <!-- En-tête -->
     {% section 'header' %}
 
@@ -20,7 +16,7 @@
     {% section 'banner' %}
 
     <!-- Contenu principal -->
-    <main role="main" class="container mx-auto px-4">
+    <main role="main">
         {{ content_for_layout }}
     </main>
 
