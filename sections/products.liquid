@@ -1,0 +1,21 @@
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {% for product in collections['frontpage'].products %}
+        <div class="bg-white shadow rounded-lg p-4">
+          <div class="flex space-x-2 mb-2">
+            {% if product.tags %}
+              {% for tag in product.tags %}
+                <span class="px-3 py-1 bg-purple-500 text-white text-xs rounded-full">{{ tag }}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | image_url: 'medium' }}" alt="{{ product.title }}" class="rounded-lg mb-4">
+          </a>
+          <h3 class="text-lg font-semibold text-gray-800">{{ product.title }}</h3>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
